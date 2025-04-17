@@ -44,7 +44,6 @@ public class Board : MonoBehaviour
         Randomize();
     }
 
-
     public bool MoveTile(Tile tile)
     {
         if(Vector2.Distance(tile.transform.position, m_EmptyTilePos) <= (1.1f + m_TileOffset))
@@ -95,6 +94,22 @@ public class Board : MonoBehaviour
         }
 
         return m_Tiles.Where(t => t.transform.position == adj).FirstOrDefault();
+    }
+
+    public void CheckWin()
+    {
+        if (PlayerWon())
+            Debug.Log("Player won!");
+    }
+
+    private bool PlayerWon()
+    {
+        foreach (var tile in m_Tiles)
+        {
+            if (!tile.IsInPlace())
+                return false;
+        }
+        return true;
     }
 
     private void Randomize()

@@ -67,6 +67,5 @@ public class Tile : MonoBehaviour
     private void OnMouseDown()
     {
         m_Board.MoveTile(this);
-        m_Board.CheckWin();
     }
 }

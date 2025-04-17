@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using static Direction;
 
 public class Board : MonoBehaviour
 {
@@ -38,5 +40,69 @@ public class Board : MonoBehaviour
         }
 
         m_EmptyTilePos = newInstancePos;
+
+        Randomize();
+    }
+
+
+    public bool MoveTile(Tile tile)
+    {
+        if(Vector2.Distance(tile.transform.position, m_EmptyTilePos) <= (1.1f + m_TileOffset))
+        {
+            SwapTile(tile);
+            return true;
+        }
+        return false;
+    }
+
+    public bool MoveTile(DirectionEnum dir)
+    {
+        Tile adjTile = GetAdjacentTile(dir);
+
+        if (adjTile == null)
+            return false;
+
+        SwapTile(adjTile);
+
+        return true;
+    }
+
+    private void SwapTile(Tile tile)
+    {
+        Vector2 tilePos = tile.transform.position;
+        tile.MoveToPos(m_EmptyTilePos);
+        m_EmptyTilePos = tilePos;
+    }
+
+    private Tile GetAdjacentTile(DirectionEnum dir)
+    {
+        Vector3 adj = Vector3.zero;
+
+        switch (dir)
+        {
+            case DirectionEnum.up:
+                adj = new Vector2(m_EmptyTilePos.x, m_EmptyTilePos.y - (1 + m_TileOffset));
+                break;
+            case DirectionEnum.down:
+                adj = new Vector2(m_EmptyTilePos.x, m_EmptyTilePos.y + (1 + m_TileOffset));
+                break;
+            case DirectionEnum.left:
+                adj = new Vector2(m_EmptyTilePos.x + (1 + m_TileOffset), m_EmptyTilePos.y);
+                break;
+            case DirectionEnum.right:
+                adj = new Vector2(m_EmptyTilePos.x - (1 + m_TileOffset), m_EmptyTilePos.y);
+                break;
+        }
+
+        return m_Tiles.Where(t => t.transform.position == adj).FirstOrDefault();
+    }
+
+    private void Randomize()
+    {
+        for (int i = 0; i < 1000;)
+        {
+            bool success = MoveTile(GetRandomDirection());
+            if (!success) ++i;
+        }
     }
 }

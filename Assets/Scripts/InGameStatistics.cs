@@ -1,7 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class InGameStatistics : MonoBehaviour
 {
+    public Text MoveCountTxt;
+    public Text TimeTxt;
+
     private static int m_MoveCount;
     public static int MoveCount => m_MoveCount;
 
@@ -11,7 +16,10 @@ public class InGameStatistics : MonoBehaviour
     private void Update()
     {
         if (m_IsTimerRunning)
+        {
             m_Time += Time.deltaTime;
+            UpdateUI();
+        }
     }
 
     public static void StartTimer()
@@ -27,6 +35,11 @@ public class InGameStatistics : MonoBehaviour
     public static void TileMoved()
     {
         ++m_MoveCount;
-        Debug.Log(MoveCount);
+    }
+
+    private void UpdateUI()
+    {
+        MoveCountTxt.text = "Move Count: " + MoveCount;
+        TimeTxt.text = $"Time: " + m_Time.ToString("0.00") + " s";
     }
 }

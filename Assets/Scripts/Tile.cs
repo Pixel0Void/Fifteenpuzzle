@@ -22,4 +22,9 @@ public class Tile : MonoBehaviour
     {
         transform.position = newPos;
     }
+
+    private void OnMouseDown()
+    {
+        this.transform.parent.GetComponent<Board>().MoveTile(this);
+    }
 }

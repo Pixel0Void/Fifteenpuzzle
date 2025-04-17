@@ -17,4 +17,9 @@ public class Tile : MonoBehaviour
         m_Number = num;
         m_NumTxt.text = m_Number.ToString();
     }
+
+    public void MoveToPos(Vector2 newPos)
+    {
+        transform.position = newPos;
+    }
 }

@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using static Direction;
 
 public class Board : MonoBehaviour
 {
     public GameObject TilePrefab;
+    public UnityEvent OnPuzzleSolved;
     private List<Tile> m_Tiles = new List<Tile>();
     private Vector2 m_EmptyTilePos;
 
@@ -17,6 +19,8 @@ public class Board : MonoBehaviour
     private void Start()
     {
         CreateBoard(PlayerPrefs.GetInt("Size"), 0.1f);
+        InGameStatistics.Reset();
+        InGameStatistics.StartTimer();
     }
 
     public void CreateBoard(int size, float tileOffset)
@@ -103,7 +107,11 @@ public class Board : MonoBehaviour
     public void CheckWin()
     {
         if (PlayerWon())
+        {
             Debug.Log("Player won!");
+            InGameStatistics.StopTimer();
+            OnPuzzleSolved?.Invoke();
+        }
     }
 
     private bool PlayerWon()
@@ -125,5 +133,10 @@ public class Board : MonoBehaviour
             if (!success) ++i;
         }
         m_Shuffeling = false;
+
+        foreach (var tile in m_Tiles)
+        {
+            tile.IsInPlace();
+        }
     }
 }

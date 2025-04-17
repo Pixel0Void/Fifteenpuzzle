@@ -10,14 +10,15 @@ public class InGameStatistics : MonoBehaviour
     private static int m_MoveCount;
     public static int MoveCount => m_MoveCount;
 
-    private float m_Time;
+    private static float m_Time;
+    public static float Time => m_Time;
     private static bool m_IsTimerRunning;
 
     private void Update()
     {
         if (m_IsTimerRunning)
         {
-            m_Time += Time.deltaTime;
+            m_Time += UnityEngine.Time.deltaTime;
             UpdateUI();
         }
     }

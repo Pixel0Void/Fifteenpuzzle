@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using static Direction;
 
 public class Board : MonoBehaviour
 {
     public GameObject TilePrefab;
+    public UnityEvent OnPuzzleSolved;
     private List<Tile> m_Tiles = new List<Tile>();
     private Vector2 m_EmptyTilePos;
 
@@ -107,6 +109,7 @@ public class Board : MonoBehaviour
         {
             Debug.Log("Player won!");
             InGameStatistics.StopTimer();
+            OnPuzzleSolved?.Invoke();
         }
     }
 

@@ -52,6 +52,7 @@ public class Tile : MonoBehaviour
         transform.position = targetPos;
         m_Board.CheckWin();
         ColorSwap();
+        InGameStatistics.TileMoved();
     }
 
     public bool IsInPlace()

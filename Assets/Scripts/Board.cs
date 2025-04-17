@@ -17,6 +17,7 @@ public class Board : MonoBehaviour
     private void Start()
     {
         CreateBoard(PlayerPrefs.GetInt("Size"), 0.1f);
+        InGameStatistics.StartTimer();
     }
 
     public void CreateBoard(int size, float tileOffset)
@@ -103,7 +104,10 @@ public class Board : MonoBehaviour
     public void CheckWin()
     {
         if (PlayerWon())
+        {
             Debug.Log("Player won!");
+            InGameStatistics.StopTimer();
+        }
     }
 
     private bool PlayerWon()

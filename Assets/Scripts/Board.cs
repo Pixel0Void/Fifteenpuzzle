@@ -12,6 +12,7 @@ public class Board : MonoBehaviour
     private float m_TileOffset;
     private int m_Size;
     private int m_BoardSize;
+    private bool m_Shuffeling = false;
 
     private void Start()
     {
@@ -69,7 +70,7 @@ public class Board : MonoBehaviour
     private void SwapTile(Tile tile)
     {
         Vector2 tilePos = tile.transform.position;
-        tile.MoveToPos(m_EmptyTilePos);
+        tile.MoveToPos(m_EmptyTilePos, !m_Shuffeling);
         m_EmptyTilePos = tilePos;
     }
 
@@ -114,10 +115,12 @@ public class Board : MonoBehaviour
 
     private void Randomize()
     {
+        m_Shuffeling = true;
         for (int i = 0; i < 1000;)
         {
             bool success = MoveTile(GetRandomDirection());
             if (!success) ++i;
         }
+        m_Shuffeling = false;
     }
 }

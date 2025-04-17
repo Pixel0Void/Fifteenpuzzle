@@ -1,7 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
+    public float MovementSpeed = 10f;
+
     private int m_Number;
     public int Number => m_Number;
 
@@ -23,9 +26,23 @@ public class Tile : MonoBehaviour
         m_NumTxt.text = m_Number.ToString();
     }
 
-    public void MoveToPos(Vector2 newPos)
+    public void MoveToPos(Vector2 newPos, bool playAnim)
     {
-        transform.position = newPos;
+        if (playAnim)
+            StartCoroutine(MoveAnim(newPos));
+        else
+            transform.position = newPos;
+    }
+
+    private IEnumerator MoveAnim(Vector2 targetPos)
+    {
+        while (Vector2.Distance(transform.position, targetPos) > 0.1f)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, targetPos, MovementSpeed * Time.deltaTime);
+            yield return null;
+        }
+        transform.position = targetPos;
+        m_Board.CheckWin();
     }
 
     public bool IsInPlace()

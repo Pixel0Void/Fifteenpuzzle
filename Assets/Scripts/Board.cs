@@ -42,6 +42,9 @@ public class Board : MonoBehaviour
 
         m_EmptyTilePos = newInstancePos;
 
+        Camera.main.transform.position = new Vector3(size / 2f, -size / 2f, -10f);
+        Camera.main.orthographicSize = size + 1f;
+
         Randomize();
     }
 

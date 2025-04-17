@@ -125,5 +125,10 @@ public class Board : MonoBehaviour
             if (!success) ++i;
         }
         m_Shuffeling = false;
+
+        foreach (var tile in m_Tiles)
+        {
+            tile.IsInPlace();
+        }
     }
 }

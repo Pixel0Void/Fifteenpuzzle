@@ -189,6 +189,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95d789b4d2bf080409446b6fde1ec2a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MovementSpeed: 10
+  CorrectPlaceColor: {r: 0.02441454, g: 1, b: 0, a: 1}
+  WrongPlaceColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!65 &8738469228973114814
 BoxCollider:
   m_ObjectHideFlags: 0

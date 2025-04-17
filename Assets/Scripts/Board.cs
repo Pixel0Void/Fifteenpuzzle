@@ -16,7 +16,7 @@ public class Board : MonoBehaviour
 
     private void Start()
     {
-        CreateBoard(4, 0.1f);
+        CreateBoard(PlayerPrefs.GetInt("Size"), 0.1f);
     }
 
     public void CreateBoard(int size, float tileOffset)

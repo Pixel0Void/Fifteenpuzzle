@@ -19,6 +19,7 @@ public class Board : MonoBehaviour
     private void Start()
     {
         CreateBoard(PlayerPrefs.GetInt("Size"), 0.1f);
+        InGameStatistics.Reset();
         InGameStatistics.StartTimer();
     }
 

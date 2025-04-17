@@ -38,6 +38,12 @@ public class InGameStatistics : MonoBehaviour
         ++m_MoveCount;
     }
 
+    public static void Reset()
+    {
+        m_Time = 0f;
+        m_MoveCount = 0;
+    }
+
     private void UpdateUI()
     {
         MoveCountTxt.text = "Move Count: " + MoveCount;

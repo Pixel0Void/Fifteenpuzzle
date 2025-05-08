@@ -6,13 +6,13 @@ A digital implementation of the classic **15 Puzzle** game written in C#, develo
 ## 📸 Screenshots
 
 ### 🧭 Main Menu
-![Main Menu](Screenshots/Menu.png)
+![Main Menu](Screenshots/Menu.jpg)
 
 ### 🎮 Gameplay Example 1
-![Gameplay 1](Screenshots/Game1.png)
+![Gameplay 1](Screenshots/Game1.jpg)
 
 ### 🎮 Gameplay Example 2
-![Gameplay 2](Screenshots/Game2.png)
+![Gameplay 2](Screenshots/Game2.jpg)
 
 ## 🎮 About the Project
 

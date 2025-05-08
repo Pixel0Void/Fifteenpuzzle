@@ -14,6 +14,9 @@ A digital implementation of the classic **15 Puzzle** game written in C#, develo
 ### 🎮 Gameplay Example 2
 ![Gameplay 2](Screenshots/Game2.jpg)
 
+### 🎮 End Screen
+![Gameplay 2](Screenshots/EndScreen.jpg)
+
 ## 🎮 About the Project
 
 This project recreates the classic sliding tile puzzle where the player must arrange numbered tiles in the correct order by sliding them around an empty space.
